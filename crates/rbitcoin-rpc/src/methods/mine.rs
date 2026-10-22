@@ -1290,6 +1290,9 @@ pub fn submit_reject_reason(e: &rbitcoin_net::NetError) -> String {
     if s.contains("signet solution invalid") {
         return "bad-signet-blksig".into();
     }
+    if s.contains("timestamp too far in future") {
+        return "time-too-new".into();
+    }
     for needle in [
         "bad-txns-nonfinal",
         "bad-txns-duplicate",
